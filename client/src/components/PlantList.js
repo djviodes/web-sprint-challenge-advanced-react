@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { response } from "express";
 
 export default class PlantList extends Component {
   // add state with a property called "plants" - initialize as an empty array
@@ -24,7 +23,7 @@ export default class PlantList extends Component {
       .then(response => {
         console.log(response)
         this.setState({
-          plants: response.data
+          plants: response.data.plantsData
         });
       })
       .catch(error => {
@@ -36,7 +35,7 @@ export default class PlantList extends Component {
   render() {
     return (
       <main className="plant-list">
-        {this.state?.plants?.map((plant) => (
+        {this.state.plants.map((plant) => (
           <div className="plant-card" key={plant.id}>
             <img className="plant-image" src={plant.img} alt={plant.name} />
             <div className="plant-details">
